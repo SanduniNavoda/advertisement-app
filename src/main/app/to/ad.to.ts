@@ -1,4 +1,4 @@
-export class AdvertisementTo {
+export class AdTo {
 
     constructor(public id: number,
                 public title: string,

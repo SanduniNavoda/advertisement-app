@@ -2,13 +2,13 @@ import express, {json, Request, Response} from "express";
 import {DeleteMapping, GetMapping, Middleware, PostMapping, RestController} from "../config/core.config.js";
 
 
-@Middleware([json])
-@RestController("/ads")
+@Middleware([json()])
+@RestController("/users/:user/ads")
 export class AdvertisementHttpController{//now we can import this clas in another module
     @GetMapping("/")
-    async getAllAdvertisements(req: Request,
+    async findAllAdvertisements(req: Request,
                                   res: Response){
-        console.log("Get all Advertisements")
+        console.log("Get all Advertisements");
     }
 
 
@@ -18,7 +18,7 @@ export class AdvertisementHttpController{//now we can import this clas in anothe
         console.log("Post Advertisement");
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/:id")
      async deleteAdvertisement(req: Request,
                                  res: Response){
         console.log("Delete Advertisement");
@@ -26,12 +26,6 @@ export class AdvertisementHttpController{//now we can import this clas in anothe
 
 }
 
-const router = express.Router();
-const httpController = new AdvertisementHttpController();
-
-router.get('/', httpController.getAllAdvertisements);
-router.post('/', httpController.postAdvertisement);
-router.delete('/:id', httpController.deleteAdvertisement);
 
 //export {router as AdvertisementHttpController};
 

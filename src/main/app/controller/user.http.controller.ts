@@ -14,24 +14,15 @@ export class userHttpController{
         const user = req.body as UserTo;
     }
 
-    @DeleteMapping("/me")
+    @DeleteMapping("/:user")
     async deleteUser(req: Request, res: Response){
-        console.log("Delete User")
+        console.log("Delete User");
     }
 
-    @GetMapping("/me")
+    @GetMapping("/:user")//this path segment can be change , so we calls them as path parameters / route parameters.
     async getUserAccount(req: Request, res: Response){
-        console.log("get User")
+        console.log("get User");
     }
 }
-
-const router = express.Router();
-const httpController = new userHttpController();
-
-router.use(json());
-
-router.get("/me", httpController.getUserAccount);
-router.post("/", Validators.validateUser, httpController.createNewUser);
-router.delete("/me", httpController.deleteUser);
 
 //export {router as UserHttpController}
